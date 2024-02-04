@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form System</title>
+</head>
+<body>
+    <form id="myForm">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required><br>
+
+        <label for="device">Device:</label>
+        <select id="device" name="device" required>
+            <option value="Xbox Series S 1TB">Xbox Series S 1TB</option>
+            <option value="Xbox Series S 500GB">Xbox Series S 500GB</option>
+        </select><br>
+
+        <label for="condition">Condition:</label>
+        <select id="condition" name="condition" required>
+            <option value="Flawless">Flawless</option>
+            <option value="Cracked">Cracked</option>
+        </select><br>
+
+        <label for="boughtFor">Bought For:</label>
+        <input type="text" id="boughtFor" name="boughtFor" required><br>
+
+        <label for="soldFor">Sold For:</label>
+        <input type="text" id="soldFor" name="soldFor" required><br>
+
+        <button type="button" onclick="submitForm()">Submit</button>
+    </form>
+
+    <script>
+        function submitForm() {
+            const formData = new FormData(document.getElementById('myForm'));
+            const webhookURL = 'https://discord.com/api/webhooks/1203502111694782515/F9koaqJHEZX-dD11Q1f_X7XYV3IobyTshryQgbdJF0pKpkEFuYAKHDO2Bv6J6XG9iArV';
+
+            fetch(webhookURL, {
+                method: 'POST',
+                body: JSON.stringify({
+                    content: 'New form submission:\n' + [...formData.entries()].map(entry => entry[0] + ': ' + entry[1]).join('\n')
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(response => {
+                if (!response.ok) {
+                    console.error('Failed to submit form.');
+                } else {
+                    alert('Form submitted successfully!');
+                }
+            }).catch(error => console.error('Error:', error));
+        }
+    </script>
+</body>
+</html>
