@@ -33,12 +33,13 @@
 
     <script>
         function submitForm() {
+            const formData = new FormData(document.getElementById('myForm'));
             const webhookURL = 'https://discord.com/api/webhooks/1203502111694782515/F9koaqJHEZX-dD11Q1f_X7XYV3IobyTshryQgbdJF0pKpkEFuYAKHDO2Bv6J6XG9iArV';
 
             fetch(webhookURL, {
                 method: 'POST',
                 body: JSON.stringify({
-                    content: '!test123'
+                    content: 'New form submission:\n' + [...formData.entries()].map(entry => entry[0] + ': ' + entry[1]).join('\n')
                 }),
                 headers: {
                     'Content-Type': 'application/json'
