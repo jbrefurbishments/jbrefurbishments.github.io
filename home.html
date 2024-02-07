@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Order Log</title>
+    <title>Form System</title>
 </head>
 <body>
     <form id="myForm">
@@ -28,21 +28,17 @@
         <label for="soldFor">Sold For:</label>
         <input type="text" id="soldFor" name="soldFor" required><br>
 
-        <label for="Profit">Profit:</label>
-        <input type="text" id="Profit" name="Profit" required><br>
-
         <button type="button" onclick="submitForm()">Submit</button>
     </form>
 
     <script>
         function submitForm() {
-            const formData = new FormData(document.getElementById('myForm'));
             const webhookURL = 'https://discord.com/api/webhooks/1203502111694782515/F9koaqJHEZX-dD11Q1f_X7XYV3IobyTshryQgbdJF0pKpkEFuYAKHDO2Bv6J6XG9iArV';
 
             fetch(webhookURL, {
                 method: 'POST',
                 body: JSON.stringify({
-                    content: 'New form submission:\n' + [...formData.entries()].map(entry => entry[0] + ': ' + entry[1]).join('\n')
+                    content: '!test123'
                 }),
                 headers: {
                     'Content-Type': 'application/json'
