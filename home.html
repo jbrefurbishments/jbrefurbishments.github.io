@@ -34,23 +34,18 @@
     <script>
         function submitForm() {
             const formData = new FormData(document.getElementById('myForm'));
-            const webhookURL = 'https://discord.com/api/webhooks/1203502111694782515/F9koaqJHEZX-dD11Q1f_X7XYV3IobyTshryQgbdJF0pKpkEFuYAKHDO2Bv6J6XG9iArV';
+            const salesData = {
+                date: formData.get('date'),
+                device: formData.get('device'),
+                condition: formData.get('condition'),
+                boughtFor: formData.get('boughtFor'),
+                soldFor: formData.get('soldFor')
+            };
 
-            fetch(webhookURL, {
-                method: 'POST',
-                body: JSON.stringify({
-                    content: 'New form submission:\n' + [...formData.entries()].map(entry => entry[0] + ': ' + entry[1]).join('\n')
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(response => {
-                if (!response.ok) {
-                    console.error('Failed to submit form.');
-                } else {
-                    alert('Form submitted successfully!');
-                }
-            }).catch(error => console.error('Error:', error));
+            localStorage.setItem('lastSale', JSON.stringify(salesData));
+
+            alert('Form submitted successfully!');
+            document.getElementById('myForm').reset();
         }
     </script>
 </body>
