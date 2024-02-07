@@ -1,1 +1,32 @@
-tsy
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sales</title>
+</head>
+<body>
+    <h2>Last Sale</h2>
+    <div id="lastSale"></div>
+
+    <script>
+        window.onload = function() {
+            const lastSaleData = localStorage.getItem('lastSale');
+            const lastSaleElement = document.getElementById('lastSale');
+
+            if (lastSaleData) {
+                const lastSale = JSON.parse(lastSaleData);
+                lastSaleElement.innerHTML = `
+                    <p>Date: ${lastSale.date}</p>
+                    <p>Device: ${lastSale.device}</p>
+                    <p>Condition: ${lastSale.condition}</p>
+                    <p>Bought For: ${lastSale.boughtFor}</p>
+                    <p>Sold For: ${lastSale.soldFor}</p>
+                `;
+            } else {
+                lastSaleElement.innerHTML = 'No recent sales';
+            }
+        };
+    </script>
+</body>
+</html>
