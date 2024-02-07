@@ -18,7 +18,7 @@
             const correctPassword = '2810';
 
             if (passwordInput === correctPassword) {
-                window.location.href = 'jbrefurbishments/home.html';
+                window.location.href = 'home.html';
             } else {
                 alert('Incorrect password. Please try again.');
             }
