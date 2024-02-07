@@ -1,1 +1,29 @@
-# jbrefurbishments.github.io
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Page</title>
+</head>
+<body>
+    <h2>Please enter the password to proceed:</h2>
+    <form id="passwordForm" onsubmit="checkPassword(event)">
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Submit</button>
+    </form>
+
+    <script>
+        function checkPassword(event) {
+            event.preventDefault();
+            const passwordInput = document.getElementById('password').value;
+            const correctPassword = '2810';
+
+            if (passwordInput === correctPassword) {
+                window.location.href = 'jbrefurbishments/home.html';
+            } else {
+                alert('Incorrect password. Please try again.');
+            }
+        }
+    </script>
+</body>
+</html>
